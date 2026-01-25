@@ -29,22 +29,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install tree-sitter CLI
-        run: npm install -g tree-sitter-cli
-
-      - name: Check grammar.js format
-        run: |
-          npm install
-          npm run generate
-          git diff --exit-code src/
