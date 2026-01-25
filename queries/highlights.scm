@@ -22,9 +22,12 @@
 ; Types
 (typecode) @type
 
-; Variables and constants
-(constant) @constant
-(variable) @variable
+; Variables and constants in declarations
+(constantstmt (constant) @constant)
+(variablestmt (variable) @variable)
+
+; Math symbols
+(mathsymbol) @variable
 
 ; Proofs
 (uncompressedproof (label) @function.call)
@@ -34,8 +37,8 @@
 (comment) @comment
 
 ; Parentheses in math expressions
-(lparen) @punctuation.bracket
-(rparen) @punctuation.bracket
+"(" @punctuation.bracket
+")" @punctuation.bracket
 
 ; File includes
 (filename) @string.special.path

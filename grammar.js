@@ -1,12 +1,12 @@
 /**
- * @file metamath grammar for tree-sitter
- * @author Auto-converted from metamath.g4
- * @license MIT
+ * @file Tree-sitter grammar for Metamath proof language
+ * @author POPeeeDev
+ * @license CC0-1.0
  * 
- * Generated: 2026-01-24T14:48:49.300Z
- * Source: metamath.g4
- * Parser rules: 23
- * Lexer rules: 7
+ * Based on the Metamath specification from "Metamath: A Computer Language 
+ * for Pure Mathematics" by Norman Megill & David A. Wheeler.
+ * 
+ * @see http://us.metamath.org/downloads/metamath.pdf (Appendix: EBNF)
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
@@ -18,10 +18,6 @@ module.exports = grammar({
   extras: $ => [
     /\s/,
     $.comment,
-  ],
-
-  conflicts: $ => [
-    [$.mathsymbol],
   ],
 
   rules: {
@@ -83,35 +79,33 @@ module.exports = grammar({
 
     typecode: $ => $.constant,
 
-    mathsymbol: $ => repeat1(choice(
-      $.printablecharacter,
-      $.lparen,
-      $.rparen
-    )),
-
-    printablecharacter: $ => choice(
-      $._printablecharacter,
-      $.label
+    // A mathsymbol is a single whitespace-delimited token per the spec:
+    // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
+    // We split into label-like tokens, parens, and other printable chars
+    mathsymbol: $ => choice(
+      $.label,
+      "(",
+      ")",
+      $._mathsymbol_chars
     ),
 
+    // Printable chars that aren't $, parens, or alphanumeric (handled by label)
+    // Range: ! " # % & ' * + , - / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
+    _mathsymbol_chars: _ => /[\x21-\x23\x25-\x27\x2a-\x2d\x2f\x3a-\x40\x5b-\x5e\x60\x7b-\x7e]+/,
+
     filename: $ => $.mathsymbol,
-
     constant: $ => $.mathsymbol,
-
     variable: $ => $.mathsymbol,
 
-    // ========== LEXER TOKENS ==========
+    // ========== TERMINAL TOKENS ==========
 
-    lparen: _ => "(",
-
-    rparen: _ => ")",
-
+    // LABEL ::= (_LETTER-OR-DIGIT | '.' | '-' | '_')+
     label: _ => /[A-Za-z0-9.\-_]+/,
 
-    _printablecharacter: _ => /[\x21-\x27\x2a-\x7e]+/,
-
+    // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
     compressedproofblock: _ => /[A-Z?]+/,
 
+    // Comments: $( ... $)
     comment: _ => /\$\([^$]*(\$[^)][^$]*)*\$\)/,
   },
 });

@@ -360,37 +360,29 @@
       "name": "constant"
     },
     "mathsymbol": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "printablecharacter"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "lparen"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "rparen"
-          }
-        ]
-      }
-    },
-    "printablecharacter": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_printablecharacter"
+          "name": "label"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         },
         {
           "type": "SYMBOL",
-          "name": "label"
+          "name": "_mathsymbol_chars"
         }
       ]
+    },
+    "_mathsymbol_chars": {
+      "type": "PATTERN",
+      "value": "[\\x21-\\x23\\x25-\\x27\\x2a-\\x2d\\x2f\\x3a-\\x40\\x5b-\\x5e\\x60\\x7b-\\x7e]+"
     },
     "filename": {
       "type": "SYMBOL",
@@ -404,21 +396,9 @@
       "type": "SYMBOL",
       "name": "mathsymbol"
     },
-    "lparen": {
-      "type": "STRING",
-      "value": "("
-    },
-    "rparen": {
-      "type": "STRING",
-      "value": ")"
-    },
     "label": {
       "type": "PATTERN",
       "value": "[A-Za-z0-9.\\-_]+"
-    },
-    "_printablecharacter": {
-      "type": "PATTERN",
-      "value": "[\\x21-\\x27\\x2a-\\x7e]+"
     },
     "compressedproofblock": {
       "type": "PATTERN",
@@ -439,11 +419,7 @@
       "name": "comment"
     }
   ],
-  "conflicts": [
-    [
-      "mathsymbol"
-    ]
-  ],
+  "conflicts": [],
   "precedences": [],
   "externals": [],
   "inline": [],

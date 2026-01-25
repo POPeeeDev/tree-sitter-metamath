@@ -9,9 +9,8 @@ $c wff |- $.
 (database
   (outermostscopestmt
     (constantstmt
-      (constant (mathsymbol (printablecharacter (label))))
-      (constant (mathsymbol (printablecharacter (label))))
-      (constant (mathsymbol (printablecharacter))))))
+      (constant (mathsymbol (label)))
+      (constant (mathsymbol)))))
 
 ================================================================================
 Variables
@@ -25,8 +24,8 @@ $v ph ps $.
   (outermostscopestmt
     (stmt
       (variablestmt
-        (variable (mathsymbol (printablecharacter (label))))
-        (variable (mathsymbol (printablecharacter (label))))))))
+        (variable (mathsymbol (label)))
+        (variable (mathsymbol (label)))))))
 
 ================================================================================
 Floating hypothesis
@@ -42,8 +41,8 @@ wph $f wff ph $.
       (hypothesisstmt
         (floatingstmt
           (label)
-          (typecode (constant (mathsymbol (printablecharacter (label)))))
-          (variable (mathsymbol (printablecharacter (label)))))))))
+          (typecode (constant (mathsymbol (label))))
+          (variable (mathsymbol (label))))))))
 
 ================================================================================
 Essential hypothesis
@@ -59,8 +58,8 @@ min $e |- ph $.
       (hypothesisstmt
         (essentialstmt
           (label)
-          (typecode (constant (mathsymbol (printablecharacter))))
-          (mathsymbol (printablecharacter (label))))))))
+          (typecode (constant (mathsymbol)))
+          (mathsymbol (label)))))))
 
 ================================================================================
 Axiom
@@ -76,16 +75,16 @@ ax-1 $a |- ( ph -> ( ps -> ph ) ) $.
       (assertstmt
         (axiomstmt
           (label)
-          (typecode (constant (mathsymbol (printablecharacter))))
-          (mathsymbol (lparen))
-          (mathsymbol (printablecharacter (label)))
-          (mathsymbol (printablecharacter))
-          (mathsymbol (lparen))
-          (mathsymbol (printablecharacter (label)))
-          (mathsymbol (printablecharacter))
-          (mathsymbol (printablecharacter (label)))
-          (mathsymbol (rparen))
-          (mathsymbol (rparen)))))))
+          (typecode (constant (mathsymbol)))
+          (mathsymbol)
+          (mathsymbol (label))
+          (mathsymbol)
+          (mathsymbol)
+          (mathsymbol (label))
+          (mathsymbol)
+          (mathsymbol (label))
+          (mathsymbol)
+          (mathsymbol))))))
 
 ================================================================================
 Provable statement with uncompressed proof
@@ -101,8 +100,8 @@ mp2 $p |- ch $= wph wps wch min maj mp $.
       (assertstmt
         (provablestmt
           (label)
-          (typecode (constant (mathsymbol (printablecharacter))))
-          (mathsymbol (printablecharacter (label)))
+          (typecode (constant (mathsymbol)))
+          (mathsymbol (label))
           (proof
             (uncompressedproof
               (label)
@@ -128,7 +127,7 @@ $}
       (block
         (stmt
           (variablestmt
-            (variable (mathsymbol (printablecharacter (label))))))))))
+            (variable (mathsymbol (label)))))))))
 
 ================================================================================
 Comment
@@ -143,7 +142,7 @@ $c wff $.
   (comment)
   (outermostscopestmt
     (constantstmt
-      (constant (mathsymbol (printablecharacter (label)))))))
+      (constant (mathsymbol (label))))))
 
 ================================================================================
 Disjoint variables
@@ -157,5 +156,40 @@ $d x y $.
   (outermostscopestmt
     (stmt
       (disjointstmt
-        (variable (mathsymbol (printablecharacter (label))))
-        (variable (mathsymbol (printablecharacter (label))))))))
+        (variable (mathsymbol (label)))
+        (variable (mathsymbol (label)))))))
+
+================================================================================
+Compressed proof
+================================================================================
+
+th1 $p |- ph $= ( wph ax-1 ) ABCD $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (assertstmt
+        (provablestmt
+          (label)
+          (typecode (constant (mathsymbol)))
+          (mathsymbol (label))
+          (proof
+            (compressedproof
+              (label)
+              (label)
+              (compressedproofblock))))))))
+
+================================================================================
+Include statement
+================================================================================
+
+$[ file.mm $]
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (includestmt
+      (filename (mathsymbol (label))))))

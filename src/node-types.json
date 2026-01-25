@@ -232,28 +232,15 @@
     }
   },
   {
-    "type": "lparen",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "mathsymbol",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "lparen",
-          "named": true
-        },
-        {
-          "type": "printablecharacter",
-          "named": true
-        },
-        {
-          "type": "rparen",
+          "type": "label",
           "named": true
         }
       ]
@@ -277,21 +264,6 @@
         },
         {
           "type": "stmt",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "printablecharacter",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -342,11 +314,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "rparen",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "stmt",
