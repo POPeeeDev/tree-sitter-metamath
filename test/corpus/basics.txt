@@ -1,0 +1,161 @@
+================================================================================
+Constants
+================================================================================
+
+$c wff |- $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (constantstmt
+      (constant (mathsymbol (printablecharacter (label))))
+      (constant (mathsymbol (printablecharacter (label))))
+      (constant (mathsymbol (printablecharacter))))))
+
+================================================================================
+Variables
+================================================================================
+
+$v ph ps $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (variablestmt
+        (variable (mathsymbol (printablecharacter (label))))
+        (variable (mathsymbol (printablecharacter (label))))))))
+
+================================================================================
+Floating hypothesis
+================================================================================
+
+wph $f wff ph $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (hypothesisstmt
+        (floatingstmt
+          (label)
+          (typecode (constant (mathsymbol (printablecharacter (label)))))
+          (variable (mathsymbol (printablecharacter (label)))))))))
+
+================================================================================
+Essential hypothesis
+================================================================================
+
+min $e |- ph $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (hypothesisstmt
+        (essentialstmt
+          (label)
+          (typecode (constant (mathsymbol (printablecharacter))))
+          (mathsymbol (printablecharacter (label))))))))
+
+================================================================================
+Axiom
+================================================================================
+
+ax-1 $a |- ( ph -> ( ps -> ph ) ) $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (assertstmt
+        (axiomstmt
+          (label)
+          (typecode (constant (mathsymbol (printablecharacter))))
+          (mathsymbol (lparen))
+          (mathsymbol (printablecharacter (label)))
+          (mathsymbol (printablecharacter))
+          (mathsymbol (lparen))
+          (mathsymbol (printablecharacter (label)))
+          (mathsymbol (printablecharacter))
+          (mathsymbol (printablecharacter (label)))
+          (mathsymbol (rparen))
+          (mathsymbol (rparen)))))))
+
+================================================================================
+Provable statement with uncompressed proof
+================================================================================
+
+mp2 $p |- ch $= wph wps wch min maj mp $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (assertstmt
+        (provablestmt
+          (label)
+          (typecode (constant (mathsymbol (printablecharacter))))
+          (mathsymbol (printablecharacter (label)))
+          (proof
+            (uncompressedproof
+              (label)
+              (label)
+              (label)
+              (label)
+              (label)
+              (label))))))))
+
+================================================================================
+Block scope
+================================================================================
+
+${
+  $v x $.
+$}
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (block
+        (stmt
+          (variablestmt
+            (variable (mathsymbol (printablecharacter (label))))))))))
+
+================================================================================
+Comment
+================================================================================
+
+$( This is a comment $)
+$c wff $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (comment)
+  (outermostscopestmt
+    (constantstmt
+      (constant (mathsymbol (printablecharacter (label)))))))
+
+================================================================================
+Disjoint variables
+================================================================================
+
+$d x y $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (disjointstmt
+        (variable (mathsymbol (printablecharacter (label))))
+        (variable (mathsymbol (printablecharacter (label))))))))

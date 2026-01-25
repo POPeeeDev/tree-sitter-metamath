@@ -1,0 +1,452 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "metamath",
+  "rules": {
+    "database": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "outermostscopestmt"
+      }
+    },
+    "outermostscopestmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "includestmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constantstmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "stmt"
+        }
+      ]
+    },
+    "includestmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "filename"
+        },
+        {
+          "type": "STRING",
+          "value": "$]"
+        }
+      ]
+    },
+    "constantstmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$c"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "constant"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "stmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variablestmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "disjointstmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hypothesisstmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assertstmt"
+        }
+      ]
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "${"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "stmt"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$}"
+        }
+      ]
+    },
+    "variablestmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$v"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "disjointstmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$d"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "hypothesisstmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "floatingstmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "essentialstmt"
+        }
+      ]
+    },
+    "floatingstmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "label"
+        },
+        {
+          "type": "STRING",
+          "value": "$f"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typecode"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "essentialstmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "label"
+        },
+        {
+          "type": "STRING",
+          "value": "$e"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typecode"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mathsymbol"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "assertstmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "axiomstmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "provablestmt"
+        }
+      ]
+    },
+    "axiomstmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "label"
+        },
+        {
+          "type": "STRING",
+          "value": "$a"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typecode"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mathsymbol"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "provablestmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "label"
+        },
+        {
+          "type": "STRING",
+          "value": "$p"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typecode"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mathsymbol"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "$="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "proof"
+        },
+        {
+          "type": "STRING",
+          "value": "$."
+        }
+      ]
+    },
+    "proof": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "uncompressedproof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "compressedproof"
+        }
+      ]
+    },
+    "uncompressedproof": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "label"
+          },
+          {
+            "type": "STRING",
+            "value": "?"
+          }
+        ]
+      }
+    },
+    "compressedproof": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "label"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "compressedproofblock"
+          }
+        }
+      ]
+    },
+    "typecode": {
+      "type": "SYMBOL",
+      "name": "constant"
+    },
+    "mathsymbol": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "printablecharacter"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "lparen"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "rparen"
+          }
+        ]
+      }
+    },
+    "printablecharacter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_printablecharacter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "label"
+        }
+      ]
+    },
+    "filename": {
+      "type": "SYMBOL",
+      "name": "mathsymbol"
+    },
+    "constant": {
+      "type": "SYMBOL",
+      "name": "mathsymbol"
+    },
+    "variable": {
+      "type": "SYMBOL",
+      "name": "mathsymbol"
+    },
+    "lparen": {
+      "type": "STRING",
+      "value": "("
+    },
+    "rparen": {
+      "type": "STRING",
+      "value": ")"
+    },
+    "label": {
+      "type": "PATTERN",
+      "value": "[A-Za-z0-9.\\-_]+"
+    },
+    "_printablecharacter": {
+      "type": "PATTERN",
+      "value": "[\\x21-\\x27\\x2a-\\x7e]+"
+    },
+    "compressedproofblock": {
+      "type": "PATTERN",
+      "value": "[A-Z?]+"
+    },
+    "comment": {
+      "type": "PATTERN",
+      "value": "\\$\\([^$]*(\\$[^)][^$]*)*\\$\\)"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    }
+  ],
+  "conflicts": [
+    [
+      "mathsymbol"
+    ]
+  ],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
+}

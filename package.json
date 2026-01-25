@@ -1,0 +1,70 @@
+{
+  "name": "tree-sitter-metamath",
+  "version": "1.0.0",
+  "description": "Tree-sitter grammar for Metamath proof language",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "author": "POPeeeDev",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "metamath",
+    "proof",
+    "theorem-prover",
+    "formal-verification",
+    "formal-methods",
+    "mathematics"
+  ],
+  "license": "CC0-1.0",
+  "homepage": "https://github.com/POPeeeDev/tree-sitter-metamath#readme",
+  "bugs": {
+    "url": "https://github.com/POPeeeDev/tree-sitter-metamath/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/POPeeeDev/tree-sitter-metamath.git"
+  },
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**",
+    "*.wasm"
+  ],
+  "dependencies": {
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "devDependencies": {
+    "prebuildify": "^6.0.0",
+    "tree-sitter-cli": "^0.24.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "build": "tree-sitter generate && node-gyp rebuild",
+    "build-wasm": "tree-sitter build --wasm",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse",
+    "prebuildify": "prebuildify --napi --strip"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.metamath",
+      "file-types": ["mm"],
+      "injection-regex": "^metamath$",
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm",
+      "tags": "queries/tags.scm"
+    }
+  ]
+}
