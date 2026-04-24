@@ -9,7 +9,7 @@ $c wff |- $.
 (database
   (outermostscopestmt
     (constantstmt
-      (constant (mathsymbol (label)))
+      (constant (mathsymbol))
       (constant (mathsymbol)))))
 
 ================================================================================
@@ -24,8 +24,8 @@ $v ph ps $.
   (outermostscopestmt
     (stmt
       (variablestmt
-        (variable (mathsymbol (label)))
-        (variable (mathsymbol (label)))))))
+        (variable (mathsymbol))
+        (variable (mathsymbol))))))
 
 ================================================================================
 Floating hypothesis
@@ -41,8 +41,8 @@ wph $f wff ph $.
       (hypothesisstmt
         (floatingstmt
           (label)
-          (typecode (constant (mathsymbol (label))))
-          (variable (mathsymbol (label))))))))
+          (typecode (constant (mathsymbol)))
+          (variable (mathsymbol)))))))
 
 ================================================================================
 Essential hypothesis
@@ -59,7 +59,7 @@ min $e |- ph $.
         (essentialstmt
           (label)
           (typecode (constant (mathsymbol)))
-          (mathsymbol (label)))))))
+          (mathsymbol))))))
 
 ================================================================================
 Axiom
@@ -77,12 +77,12 @@ ax-1 $a |- ( ph -> ( ps -> ph ) ) $.
           (label)
           (typecode (constant (mathsymbol)))
           (mathsymbol)
-          (mathsymbol (label))
           (mathsymbol)
           (mathsymbol)
-          (mathsymbol (label))
           (mathsymbol)
-          (mathsymbol (label))
+          (mathsymbol)
+          (mathsymbol)
+          (mathsymbol)
           (mathsymbol)
           (mathsymbol))))))
 
@@ -101,7 +101,7 @@ mp2 $p |- ch $= wph wps wch min maj mp $.
         (provablestmt
           (label)
           (typecode (constant (mathsymbol)))
-          (mathsymbol (label))
+          (mathsymbol)
           (proof
             (uncompressedproof
               (label)
@@ -127,7 +127,7 @@ $}
       (block
         (stmt
           (variablestmt
-            (variable (mathsymbol (label)))))))))
+            (variable (mathsymbol))))))))
 
 ================================================================================
 Comment
@@ -142,7 +142,7 @@ $c wff $.
   (comment)
   (outermostscopestmt
     (constantstmt
-      (constant (mathsymbol (label))))))
+      (constant (mathsymbol)))))
 
 ================================================================================
 Disjoint variables
@@ -156,8 +156,8 @@ $d x y $.
   (outermostscopestmt
     (stmt
       (disjointstmt
-        (variable (mathsymbol (label)))
-        (variable (mathsymbol (label)))))))
+        (variable (mathsymbol))
+        (variable (mathsymbol))))))
 
 ================================================================================
 Compressed proof
@@ -174,7 +174,7 @@ th1 $p |- ph $= ( wph ax-1 ) ABCD $.
         (provablestmt
           (label)
           (typecode (constant (mathsymbol)))
-          (mathsymbol (label))
+          (mathsymbol)
           (proof
             (compressedproof
               (label)
@@ -192,4 +192,55 @@ $[ file.mm $]
 (database
   (outermostscopestmt
     (includestmt
-      (filename (mathsymbol (label))))))
+      (filename (mathsymbol)))))
+
+================================================================================
+Floating hypothesis with dot
+================================================================================
+
+c.pa $f class .|| $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (hypothesisstmt
+        (floatingstmt
+          (label)
+          (typecode (constant (mathsymbol)))
+          (variable (mathsymbol)))))))
+
+================================================================================
+Floating hypothesis with quotes
+================================================================================
+
+bnjcYn $f class Y" $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (hypothesisstmt
+        (floatingstmt
+          (label)
+          (typecode (constant (mathsymbol)))
+          (variable (mathsymbol)))))))
+
+================================================================================
+Floating hypothesis with underscore
+================================================================================
+
+bnjvvm- $f setvar v'_ $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermostscopestmt
+    (stmt
+      (hypothesisstmt
+        (floatingstmt
+          (label)
+          (typecode (constant (mathsymbol)))
+          (variable (mathsymbol)))))))

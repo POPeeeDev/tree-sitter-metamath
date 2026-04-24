@@ -2,7 +2,7 @@
  * @file Tree-sitter grammar for Metamath proof language
  * @author POPeeeDev
  * @license CC0-1.0
- * 
+ *
  * Based on the Metamath specification from "Metamath: A Computer Language 
  * for Pure Mathematics" by Norman Megill & David A. Wheeler.
  * 
@@ -12,8 +12,8 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-module.exports = grammar({
-  name: 'metamath',
+export default grammar({
+  name: "metamath",
 
   extras: $ => [
     /\s/,
@@ -82,16 +82,11 @@ module.exports = grammar({
     // A mathsymbol is a single whitespace-delimited token per the spec:
     // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
     // We split into label-like tokens, parens, and other printable chars
-    mathsymbol: $ => choice(
-      $.label,
-      "(",
-      ")",
-      $._mathsymbol_chars
-    ),
+    mathsymbol: $ => /[\x21-\x23\x25-\x7e]+/,
 
     // Printable chars that aren't $, parens, or alphanumeric (handled by label)
-    // Range: ! " # % & ' * + , - / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
-    _mathsymbol_chars: _ => /[\x21-\x23\x25-\x27\x2a-\x2d\x2f\x3a-\x40\x5b-\x5e\x60\x7b-\x7e]+/,
+    // Range: ! " # % & ' * + . , - / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
+    // _mathsymbol_chars: _ => /[\x21-\x23\x25-\x27\x2a-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]+/,
 
     filename: $ => $.mathsymbol,
     constant: $ => $.mathsymbol,
@@ -105,7 +100,7 @@ module.exports = grammar({
     // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
     compressedproofblock: _ => /[A-Z?]+/,
 
-    // Comments: $( ... $)
+    // Comments: $( ... $) and do not nest
     comment: _ => /\$\([^$]*(\$[^)][^$]*)*\$\)/,
   },
 });
