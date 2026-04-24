@@ -1,9 +1,7 @@
 {
   "name": "tree-sitter-metamath",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tree-sitter grammar for Metamath proof language",
-  "main": "bindings/node",
-  "types": "bindings/node",
   "author": "POPeeeDev",
   "keywords": [
     "tree-sitter",
@@ -24,8 +22,33 @@
     "type": "git",
     "url": "git+https://github.com/POPeeeDev/tree-sitter-metamath.git"
   },
+  "tree-sitter": [
+    {
+      "scope": "source.metamath",
+      "file-types": [ "mm" ],
+      "injection-regex": "^metamath$",
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm",
+      "tags": "queries/tags.scm"
+    }
+  ],
+  "scripts": {
+    "install": "node-gyp-build",
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "generate": "tree-sitter generate",
+    "build": "tree-sitter generate && node-gyp rebuild",
+    "build-wasm": "tree-sitter build --wasm",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse",
+    "prebuildify": "prebuildify --napi --strip"
+  },
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "type": "module",
   "files": [
     "grammar.js",
+    "tree-sitter.json",
     "binding.gyp",
     "prebuilds/**",
     "bindings/node/*",
@@ -34,37 +57,20 @@
     "*.wasm"
   ],
   "dependencies": {
-    "node-addon-api": "^8.0.0",
-    "node-gyp-build": "^4.8.0"
+    "node-addon-api": "^8.5.0",
+    "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
-    "prebuildify": "^6.0.0",
-    "tree-sitter-cli": "^0.24.0"
+    "prebuildify": "^6.0.1",
+    "tree-sitter": "^0.25.0",
+    "tree-sitter-cli": "^0.26.8"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.21.0"
+    "tree-sitter": "^0.25.0"
   },
   "peerDependenciesMeta": {
     "tree-sitter": {
       "optional": true
     }
-  },
-  "scripts": {
-    "generate": "tree-sitter generate",
-    "build": "tree-sitter generate && node-gyp rebuild",
-    "build-wasm": "tree-sitter build --wasm",
-    "test": "tree-sitter test",
-    "parse": "tree-sitter parse",
-    "prebuildify": "prebuildify --napi --strip"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.metamath",
-      "file-types": ["mm"],
-      "injection-regex": "^metamath$",
-      "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm",
-      "tags": "queries/tags.scm"
-    }
-  ]
+  }
 }

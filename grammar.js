@@ -3,10 +3,10 @@
  * @author POPeeeDev
  * @license CC0-1.0
  *
- * Based on the Metamath specification from "Metamath: A Computer Language 
+ * Based on the Metamath specification from "Metamath: A Computer Language
  * for Pure Mathematics" by Norman Megill & David A. Wheeler.
- * 
- * @see http://us.metamath.org/downloads/metamath.pdf (Appendix: EBNF)
+ *
+ * @see https://us.metamath.org/downloads/metamath.pdf (Appendix: EBNF)
  */
 
 /// <reference types="tree-sitter-cli/dsl" />

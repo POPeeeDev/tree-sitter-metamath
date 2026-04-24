@@ -360,29 +360,8 @@
       "name": "constant"
     },
     "mathsymbol": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "label"
-        },
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_mathsymbol_chars"
-        }
-      ]
-    },
-    "_mathsymbol_chars": {
       "type": "PATTERN",
-      "value": "[\\x21-\\x23\\x25-\\x27\\x2a-\\x2d\\x2f\\x3a-\\x40\\x5b-\\x5e\\x60\\x7b-\\x7e]+"
+      "value": "[\\x21-\\x23\\x25-\\x7e]+"
     },
     "filename": {
       "type": "SYMBOL",
