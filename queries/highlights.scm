@@ -1,17 +1,17 @@
 ; Keywords and delimiters
-"$c" @keyword
-"$v" @keyword
-"$d" @keyword
-"$f" @keyword
-"$e" @keyword
-"$a" @keyword
-"$p" @keyword
-"$=" @keyword
+[ "$c" "$v" "$d" "$f" "$e" "$a" "$p" "$=" ] @keyword
 "$." @punctuation.delimiter
-"${" @punctuation.bracket
-"$}" @punctuation.bracket
-"$[" @keyword.import
-"$]" @keyword.import
+[ "${" "$}" ] @punctuation.bracket
+[ "$[" "$]" ] @keyword.import
+
+; Markup (update grammar.js to support)
+; "####" @markup.heading.1
+; "#*#*" @markup.heading.2
+; "=-=-" @markup.heading.3
+; "-.-." @markup.heading.4
+
+; Builtin typecodes
+; [ "|-" "wff" "setvar" "class" ] @type.builtin
 
 ; Labels
 (floatingstmt (label) @function)
@@ -31,10 +31,11 @@
 
 ; Proofs
 (uncompressedproof (label) @function.call)
+(compressedproof (label) @function.call)
 (compressedproofblock) @string
 
 ; Comments
-(comment) @comment
+(comment) @comment.block
 
 ; Parentheses in math expressions
 "(" @punctuation.bracket
