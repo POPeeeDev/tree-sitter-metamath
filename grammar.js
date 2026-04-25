@@ -77,7 +77,7 @@ export default grammar({
 
     compressedproof: $ => seq("(", repeat($.label), ")", repeat1($.compressedproofblock)),
 
-    typecode: $ => $.constant,
+    typecode: $ => $.constant, // choice("|-", "wff", "setvar", "class"),
 
     // A mathsymbol is a single whitespace-delimited token per the spec:
     // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
