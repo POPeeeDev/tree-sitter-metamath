@@ -1,8 +1,8 @@
 ; Keywords and delimiters
 [ "$c" "$v" "$d" "$f" "$e" "$a" "$p" "$=" ] @keyword
-"$." @punctuation.delimiter
 [ "${" "$}" ] @punctuation.bracket
 [ "$[" "$]" ] @keyword.import
+"$." @punctuation.delimiter
 
 ; Markup (update grammar.js to support)
 ; "####" @markup.heading.1
@@ -11,7 +11,7 @@
 ; "-.-." @markup.heading.4
 
 ; Builtin typecodes
-; [ "|-" "wff" "setvar" "class" ] @type.builtin
+[ "|-" "wff" "setvar" "class" ] @type.builtin
 
 ; Labels
 (floatingstmt (label) @function)

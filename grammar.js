@@ -77,22 +77,16 @@ export default grammar({
 
     compressedproof: $ => seq("(", repeat($.label), ")", repeat1($.compressedproofblock)),
 
-    typecode: $ => $.constant, // choice("|-", "wff", "setvar", "class"),
-
-    // A mathsymbol is a single whitespace-delimited token per the spec:
-    // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
-    // We split into label-like tokens, parens, and other printable chars
-    mathsymbol: $ => /[\x21-\x23\x25-\x7e]+/,
-
-    // Printable chars that aren't $, parens, or alphanumeric (handled by label)
-    // Range: ! " # % & ' * + . , - / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
-    // _mathsymbol_chars: _ => /[\x21-\x23\x25-\x27\x2a-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]+/,
+    typecode: $ => $.constant,
 
     filename: $ => $.mathsymbol,
-    constant: $ => $.mathsymbol,
+    constant: $ => choice("|-", "wff", "setvar", "class", $.mathsymbol),
     variable: $ => $.mathsymbol,
 
     // ========== TERMINAL TOKENS ==========
+
+    // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
+    mathsymbol: $ => /[\x21-\x23\x25-\x7e]+/,
 
     // LABEL ::= (_LETTER-OR-DIGIT | '.' | '-' | '_')+
     label: _ => /[A-Za-z0-9.\-_]+/,

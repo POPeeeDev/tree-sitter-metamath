@@ -359,21 +359,42 @@
       "type": "SYMBOL",
       "name": "constant"
     },
-    "mathsymbol": {
-      "type": "PATTERN",
-      "value": "[\\x21-\\x23\\x25-\\x7e]+"
-    },
     "filename": {
       "type": "SYMBOL",
       "name": "mathsymbol"
     },
     "constant": {
-      "type": "SYMBOL",
-      "name": "mathsymbol"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "|-"
+        },
+        {
+          "type": "STRING",
+          "value": "wff"
+        },
+        {
+          "type": "STRING",
+          "value": "setvar"
+        },
+        {
+          "type": "STRING",
+          "value": "class"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mathsymbol"
+        }
+      ]
     },
     "variable": {
       "type": "SYMBOL",
       "name": "mathsymbol"
+    },
+    "mathsymbol": {
+      "type": "PATTERN",
+      "value": "[\\x21-\\x23\\x25-\\x7e]+"
     },
     "label": {
       "type": "PATTERN",

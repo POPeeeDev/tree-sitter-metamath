@@ -81,7 +81,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "mathsymbol",
@@ -456,6 +456,10 @@
     "named": false
   },
   {
+    "type": "class",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true
@@ -471,5 +475,17 @@
   {
     "type": "mathsymbol",
     "named": true
+  },
+  {
+    "type": "setvar",
+    "named": false
+  },
+  {
+    "type": "wff",
+    "named": false
+  },
+  {
+    "type": "|-",
+    "named": false
   }
 ]

@@ -9,8 +9,8 @@ $c wff |- $.
 (database
   (outermostscopestmt
     (constantstmt
-      (constant (mathsymbol))
-      (constant (mathsymbol)))))
+      (constant)
+      (constant))))
 
 ================================================================================
 Variables
@@ -41,7 +41,7 @@ wph $f wff ph $.
       (hypothesisstmt
         (floatingstmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (variable (mathsymbol)))))))
 
 ================================================================================
@@ -58,7 +58,7 @@ min $e |- ph $.
       (hypothesisstmt
         (essentialstmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (mathsymbol))))))
 
 ================================================================================
@@ -75,7 +75,7 @@ ax-1 $a |- ( ph -> ( ps -> ph ) ) $.
       (assertstmt
         (axiomstmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (mathsymbol)
           (mathsymbol)
           (mathsymbol)
@@ -100,7 +100,7 @@ mp2 $p |- ch $= wph wps wch min maj mp $.
       (assertstmt
         (provablestmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (mathsymbol)
           (proof
             (uncompressedproof
@@ -142,7 +142,7 @@ $c wff $.
   (comment)
   (outermostscopestmt
     (constantstmt
-      (constant (mathsymbol)))))
+      (constant))))
 
 ================================================================================
 Disjoint variables
@@ -173,7 +173,7 @@ th1 $p |- ph $= ( wph ax-1 ) ABCD $.
       (assertstmt
         (provablestmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (mathsymbol)
           (proof
             (compressedproof

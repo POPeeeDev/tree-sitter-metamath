@@ -12,7 +12,7 @@ c.pa $f class .|| $.
       (hypothesisstmt
         (floatingstmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (variable (mathsymbol)))))))
 
 ================================================================================
@@ -29,7 +29,7 @@ bnjcYn $f class Y" $.
       (hypothesisstmt
         (floatingstmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (variable (mathsymbol)))))))
 
 ================================================================================
@@ -46,5 +46,5 @@ bnjvvm- $f setvar v'_ $.
       (hypothesisstmt
         (floatingstmt
           (label)
-          (typecode (constant (mathsymbol)))
+          (typecode (constant))
           (variable (mathsymbol)))))))
