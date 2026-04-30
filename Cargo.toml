@@ -1,6 +1,6 @@
 [package]
 name = "tree-sitter-metamath"
-description = "Tree-sitter grammar for Metamath proof language"
+description = "Tree-sitter grammar and parser for the Metamath proof language"
 version = "1.0.1"
 authors = [ "POPeeeDev" ]
 license = "CC0-1.0"

@@ -5,11 +5,11 @@
       "name": "metamath",
       "camelcase": "Metamath",
       "title": "Metamath",
+      "class-name": "TreeSitterMetamath",
       "scope": "source.metamath",
       "file-types": [ "mm", "ok.mm", "err.mm" ],
-      "injection-regex": "^metamath$",
-      "first-line-regex": "(\\$\\(|\\$c|\\$v).*",
-      "class-name": "Metamath"
+      "injection-regex": "^(mm|metamath)$",
+      "first-line-regex": "(\\$\\(|\\$c|\\$v).*"
     }
   ],
   "metadata": {

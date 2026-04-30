@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-metamath
         VERSION "1.0.1"
-        DESCRIPTION "Tree-sitter grammar for Metamath proof language"
+        DESCRIPTION "Tree-sitter grammar and parser for the Metamath proof language"
         HOMEPAGE_URL "https://github.com/POPeeeDev/tree-sitter-metamath"
         LANGUAGES C)
 

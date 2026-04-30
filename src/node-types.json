@@ -1,6 +1,6 @@
 [
   {
-    "type": "assertstmt",
+    "type": "assert_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -8,18 +8,18 @@
       "required": true,
       "types": [
         {
-          "type": "axiomstmt",
+          "type": "axiom_stmt",
           "named": true
         },
         {
-          "type": "provablestmt",
+          "type": "provable_stmt",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "axiomstmt",
+    "type": "axiom_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -57,7 +57,7 @@
     }
   },
   {
-    "type": "compressedproof",
+    "type": "compressed_proof",
     "named": true,
     "fields": {},
     "children": {
@@ -65,7 +65,7 @@
       "required": true,
       "types": [
         {
-          "type": "compressedproofblock",
+          "type": "compressed_proof_block",
           "named": true
         },
         {
@@ -91,7 +91,7 @@
     }
   },
   {
-    "type": "constantstmt",
+    "type": "constant_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -115,14 +115,14 @@
       "required": false,
       "types": [
         {
-          "type": "outermostscopestmt",
+          "type": "outermost_scope_stmt",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "disjointstmt",
+    "type": "disjoint_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -137,7 +137,7 @@
     }
   },
   {
-    "type": "essentialstmt",
+    "type": "essential_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -175,7 +175,7 @@
     }
   },
   {
-    "type": "floatingstmt",
+    "type": "floating_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -198,7 +198,7 @@
     }
   },
   {
-    "type": "hypothesisstmt",
+    "type": "hypothesis_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -206,18 +206,18 @@
       "required": true,
       "types": [
         {
-          "type": "essentialstmt",
+          "type": "essential_stmt",
           "named": true
         },
         {
-          "type": "floatingstmt",
+          "type": "floating_stmt",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "includestmt",
+    "type": "include_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -232,7 +232,7 @@
     }
   },
   {
-    "type": "outermostscopestmt",
+    "type": "outermost_scope_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -240,11 +240,11 @@
       "required": true,
       "types": [
         {
-          "type": "constantstmt",
+          "type": "constant_stmt",
           "named": true
         },
         {
-          "type": "includestmt",
+          "type": "include_stmt",
           "named": true
         },
         {
@@ -263,18 +263,18 @@
       "required": true,
       "types": [
         {
-          "type": "compressedproof",
+          "type": "compressed_proof",
           "named": true
         },
         {
-          "type": "uncompressedproof",
+          "type": "uncompressed_proof",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "provablestmt",
+    "type": "provable_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -309,7 +309,7 @@
       "required": true,
       "types": [
         {
-          "type": "assertstmt",
+          "type": "assert_stmt",
           "named": true
         },
         {
@@ -317,15 +317,15 @@
           "named": true
         },
         {
-          "type": "disjointstmt",
+          "type": "disjoint_stmt",
           "named": true
         },
         {
-          "type": "hypothesisstmt",
+          "type": "hypothesis_stmt",
           "named": true
         },
         {
-          "type": "variablestmt",
+          "type": "variable_stmt",
           "named": true
         }
       ]
@@ -347,7 +347,7 @@
     }
   },
   {
-    "type": "uncompressedproof",
+    "type": "uncompressed_proof",
     "named": true,
     "fields": {},
     "children": {
@@ -377,7 +377,7 @@
     }
   },
   {
-    "type": "variablestmt",
+    "type": "variable_stmt",
     "named": true,
     "fields": {},
     "children": {
@@ -465,7 +465,7 @@
     "extra": true
   },
   {
-    "type": "compressedproofblock",
+    "type": "compressed_proof_block",
     "named": true
   },
   {

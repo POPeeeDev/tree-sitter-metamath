@@ -1,7 +1,7 @@
 {
   "name": "tree-sitter-metamath",
   "version": "1.0.1",
-  "description": "Tree-sitter grammar for Metamath proof language",
+  "description": "Tree-sitter grammar and parser for the Metamath proof language",
   "author": "POPeeeDev",
   "keywords": [
     "tree-sitter",

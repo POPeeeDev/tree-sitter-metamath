@@ -14,86 +14,45 @@
 
 export default grammar({
   name: "metamath",
-
-  extras: $ => [
-    /\s/,
-    $.comment,
-  ],
-
+  extras: $ => [/\s/, $.comment],
   rules: {
     database: $ => repeat($.outermost_scope_stmt),
-
-    outermost_scope_stmt: $ => choice(
-      $.include_stmt,
-      $.constant_stmt,
-      $.stmt
-    ),
+    outermost_scope_stmt: $ =>
+      choice($.include_stmt, $.constant_stmt, $.stmt),
 
     include_stmt: $ => seq("$[", $.filename, "$]"),
-
     constant_stmt: $ => seq("$c", repeat1($.constant), "$."),
-
-    stmt: $ => choice(
-      $.block,
-      $.variable_stmt,
-      $.disjoint_stmt,
-      $.hypothesis_stmt,
-      $.assert_stmt
-    ),
+    stmt: $ =>
+      choice($.block, $.variable_stmt, $.disjoint_stmt, $.hypothesis_stmt, $.assert_stmt),
 
     block: $ => seq("${", repeat($.stmt), "$}"),
 
     variable_stmt: $ => seq("$v", repeat1($.variable), "$."),
-
     disjoint_stmt: $ => seq("$d", $.variable, $.variable, repeat($.variable), "$."),
 
-    hypothesis_stmt: $ => choice(
-      $.floating_stmt,
-      $.essential_stmt
-    ),
-
+    hypothesis_stmt: $ => choice($.floating_stmt, $.essential_stmt),
     floating_stmt: $ => seq($.label, "$f", $.typecode, $.variable, "$."),
-
     essential_stmt: $ => seq($.label, "$e", $.typecode, repeat($.mathsymbol), "$."),
 
-    assert_stmt: $ => choice(
-      $.axiom_stmt,
-      $.provable_stmt
-    ),
-
+    assert_stmt: $ => choice($.axiom_stmt, $.provable_stmt),
     axiom_stmt: $ => seq($.label, "$a", $.typecode, repeat($.mathsymbol), "$."),
+    provable_stmt: $ =>
+      seq($.label, "$p", $.typecode, repeat($.mathsymbol), "$=", $.proof, "$."),
 
-    provable_stmt: $ => seq($.label, "$p", $.typecode, repeat($.mathsymbol), "$=", $.proof, "$."),
-
-    proof: $ => choice(
-      $.uncompressed_proof,
-      $.compressed_proof
-    ),
-
-    uncompressed_proof: $ => repeat1(choice(
-      $.label,
-      "?"
-    )),
-
-    compressed_proof: $ => seq("(", repeat($.label), ")", repeat1($.compressed_proof_block)),
-
-    typecode: $ => $.constant,
+    proof: $ => choice($.uncompressed_proof, $.compressed_proof),
+    uncompressed_proof: $ => repeat1(choice($.label, "?")),
+    compressed_proof: $ =>
+      seq("(", repeat($.label), ")", repeat1($.compressed_proof_block)),
 
     filename: $ => $.mathsymbol,
+    typecode: $ => $.constant,
     constant: $ => choice("|-", "wff", "setvar", "class", $.mathsymbol),
     variable: $ => $.mathsymbol,
 
-    // ========== TERMINAL TOKENS ==========
-
-    // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
+    // TERMINAL TOKENS
     mathsymbol: $ => /[\x21-\x23\x25-\x7e]+/,
-
-    // LABEL ::= (_LETTER-OR-DIGIT | '.' | '-' | '_')+
-    label: _ => /[A-Za-z0-9.\-_]+/,
-
-    // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
-    compressed_proof_block: _ => /[A-Z?]+/,
-
+    label: _ => /[\w0-9\.\-]+/,
+    compressed_proof_block: _ => /[A-Z\?]+/,
     // Comments: $( ... $) and do not nest
     comment: _ => /\$\([^$]*(\$[^)][^$]*)*\$\)/,
   },
