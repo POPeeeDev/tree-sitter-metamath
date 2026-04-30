@@ -1,3 +1,6 @@
+# Large generated test files
+test/corpus/*.bin.txt
+
 # Rust artifacts
 target/
 # Cargo.lock
