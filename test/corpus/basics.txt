@@ -7,8 +7,8 @@ $c wff |- $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
-    (constantstmt
+  (outermost_scope_stmt
+    (constant_stmt
       (constant)
       (constant))))
 
@@ -21,9 +21,9 @@ $v ph ps $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (variablestmt
+      (variable_stmt
         (variable (mathsymbol))
         (variable (mathsymbol))))))
 
@@ -36,10 +36,10 @@ wph $f wff ph $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (hypothesisstmt
-        (floatingstmt
+      (hypothesis_stmt
+        (floating_stmt
           (label)
           (typecode (constant))
           (variable (mathsymbol)))))))
@@ -53,10 +53,10 @@ min $e |- ph $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (hypothesisstmt
-        (essentialstmt
+      (hypothesis_stmt
+        (essential_stmt
           (label)
           (typecode (constant))
           (mathsymbol))))))
@@ -70,10 +70,10 @@ ax-1 $a |- ( ph -> ( ps -> ph ) ) $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (assertstmt
-        (axiomstmt
+      (assert_stmt
+        (axiom_stmt
           (label)
           (typecode (constant))
           (mathsymbol)
@@ -95,15 +95,15 @@ mp2 $p |- ch $= wph wps wch min maj mp $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (assertstmt
-        (provablestmt
+      (assert_stmt
+        (provable_stmt
           (label)
           (typecode (constant))
           (mathsymbol)
           (proof
-            (uncompressedproof
+            (uncompressed_proof
               (label)
               (label)
               (label)
@@ -122,11 +122,11 @@ $}
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
       (block
         (stmt
-          (variablestmt
+          (variable_stmt
             (variable (mathsymbol))))))))
 
 ================================================================================
@@ -140,8 +140,8 @@ $c wff $.
 
 (database
   (comment)
-  (outermostscopestmt
-    (constantstmt
+  (outermost_scope_stmt
+    (constant_stmt
       (constant))))
 
 ================================================================================
@@ -153,9 +153,9 @@ $d x y $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (disjointstmt
+      (disjoint_stmt
         (variable (mathsymbol))
         (variable (mathsymbol))))))
 
@@ -168,18 +168,18 @@ th1 $p |- ph $= ( wph ax-1 ) ABCD $.
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
+  (outermost_scope_stmt
     (stmt
-      (assertstmt
-        (provablestmt
+      (assert_stmt
+        (provable_stmt
           (label)
           (typecode (constant))
           (mathsymbol)
           (proof
-            (compressedproof
+            (compressed_proof
               (label)
               (label)
-              (compressedproofblock))))))))
+              (compressed_proof_block))))))))
 
 ================================================================================
 Include statement
@@ -190,6 +190,6 @@ $[ file.mm $]
 --------------------------------------------------------------------------------
 
 (database
-  (outermostscopestmt
-    (includestmt
+  (outermost_scope_stmt
+    (include_stmt
       (filename (mathsymbol)))))

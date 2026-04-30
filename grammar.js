@@ -21,61 +21,61 @@ export default grammar({
   ],
 
   rules: {
-    database: $ => repeat($.outermostscopestmt),
+    database: $ => repeat($.outermost_scope_stmt),
 
-    outermostscopestmt: $ => choice(
-      $.includestmt,
-      $.constantstmt,
+    outermost_scope_stmt: $ => choice(
+      $.include_stmt,
+      $.constant_stmt,
       $.stmt
     ),
 
-    includestmt: $ => seq("$[", $.filename, "$]"),
+    include_stmt: $ => seq("$[", $.filename, "$]"),
 
-    constantstmt: $ => seq("$c", repeat1($.constant), "$."),
+    constant_stmt: $ => seq("$c", repeat1($.constant), "$."),
 
     stmt: $ => choice(
       $.block,
-      $.variablestmt,
-      $.disjointstmt,
-      $.hypothesisstmt,
-      $.assertstmt
+      $.variable_stmt,
+      $.disjoint_stmt,
+      $.hypothesis_stmt,
+      $.assert_stmt
     ),
 
     block: $ => seq("${", repeat($.stmt), "$}"),
 
-    variablestmt: $ => seq("$v", repeat1($.variable), "$."),
+    variable_stmt: $ => seq("$v", repeat1($.variable), "$."),
 
-    disjointstmt: $ => seq("$d", $.variable, $.variable, repeat($.variable), "$."),
+    disjoint_stmt: $ => seq("$d", $.variable, $.variable, repeat($.variable), "$."),
 
-    hypothesisstmt: $ => choice(
-      $.floatingstmt,
-      $.essentialstmt
+    hypothesis_stmt: $ => choice(
+      $.floating_stmt,
+      $.essential_stmt
     ),
 
-    floatingstmt: $ => seq($.label, "$f", $.typecode, $.variable, "$."),
+    floating_stmt: $ => seq($.label, "$f", $.typecode, $.variable, "$."),
 
-    essentialstmt: $ => seq($.label, "$e", $.typecode, repeat($.mathsymbol), "$."),
+    essential_stmt: $ => seq($.label, "$e", $.typecode, repeat($.mathsymbol), "$."),
 
-    assertstmt: $ => choice(
-      $.axiomstmt,
-      $.provablestmt
+    assert_stmt: $ => choice(
+      $.axiom_stmt,
+      $.provable_stmt
     ),
 
-    axiomstmt: $ => seq($.label, "$a", $.typecode, repeat($.mathsymbol), "$."),
+    axiom_stmt: $ => seq($.label, "$a", $.typecode, repeat($.mathsymbol), "$."),
 
-    provablestmt: $ => seq($.label, "$p", $.typecode, repeat($.mathsymbol), "$=", $.proof, "$."),
+    provable_stmt: $ => seq($.label, "$p", $.typecode, repeat($.mathsymbol), "$=", $.proof, "$."),
 
     proof: $ => choice(
-      $.uncompressedproof,
-      $.compressedproof
+      $.uncompressed_proof,
+      $.compressed_proof
     ),
 
-    uncompressedproof: $ => repeat1(choice(
+    uncompressed_proof: $ => repeat1(choice(
       $.label,
       "?"
     )),
 
-    compressedproof: $ => seq("(", repeat($.label), ")", repeat1($.compressedproofblock)),
+    compressed_proof: $ => seq("(", repeat($.label), ")", repeat1($.compressed_proof_block)),
 
     typecode: $ => $.constant,
 
@@ -92,7 +92,7 @@ export default grammar({
     label: _ => /[A-Za-z0-9.\-_]+/,
 
     // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
-    compressedproofblock: _ => /[A-Z?]+/,
+    compressed_proof_block: _ => /[A-Z?]+/,
 
     // Comments: $( ... $) and do not nest
     comment: _ => /\$\([^$]*(\$[^)][^$]*)*\$\)/,
