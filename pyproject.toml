@@ -13,7 +13,7 @@ classifiers = [
   "Topic :: Text Processing :: Linguistic",
   "Typing :: Typed",
 ]
-authors = [ { name = "POPeeeDev" } ]
+authors = [ { name = "POPeeeDev" }, { name = "m4dh0rs3", email = "m4dh0rs3@posteo.de" } ]
 requires-python = ">=3.10"
 license.text = "CC0-1.0"
 readme = "README.md"

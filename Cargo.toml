@@ -2,7 +2,7 @@
 name = "tree-sitter-metamath"
 description = "Tree-sitter grammar and parser for the Metamath proof language"
 version = "1.0.1"
-authors = [ "POPeeeDev" ]
+authors = [ "POPeeeDev", "m4dh0rs3" ]
 license = "CC0-1.0"
 # readme = "README.md"
 keywords = [ "tree-sitter", "parsing", "metamath", "theorem-prover", "mathematics" ]

@@ -1,6 +1,7 @@
 /**
  * @file Tree-sitter grammar for Metamath proof language
  * @author POPeeeDev
+ * @author m4dh0rs3
  * @license CC0-1.0
  *
  * Based on the Metamath specification from "Metamath: A Computer Language
