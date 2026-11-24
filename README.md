@@ -23,7 +23,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-tree-sitter-metamath = "1.0.0"
+tree-sitter-metamath = "1.0.1"
 ```
 
 ## Usage
@@ -54,7 +54,8 @@ use tree_sitter::Parser;
 
 fn main() {
     let mut parser = Parser::new();
-    parser.set_language(&tree_sitter_metamath::LANGUAGE.into()).unwrap();
+    parser.set_language(&tree_sitter_metamath::LANGUAGE.into())
+      .expect("Error loading Metamath parser");
 
     let source_code = r#"
         $c wff $.
@@ -83,6 +84,8 @@ The grammar supports the full Metamath specification:
 - **Comments** (`$( ... $)`)
 - **Compressed proofs**
 
+It parses `set.mm` successfully without erorrs.
+
 ## Development
 
 ### Prerequisites
@@ -92,21 +95,45 @@ The grammar supports the full Metamath specification:
 
 ### Building
 
+With Node:
+
 ```bash
 npm install
 npm run generate
 ```
 
+Or with tree-sitter CLI:
+
+```bash
+tree-sitter generate
+```
+
 ### Testing
+
+With Node:
 
 ```bash
 npm test
 ```
 
+Or with tree-sitter CLI:
+
+```bash
+tree-sitter test
+```
+
 ### Parsing a file
+
+With Node:
 
 ```bash
 npm run parse -- path/to/file.mm
+```
+
+Or with tree-sitter CLI:
+
+```bash
+tree-sitter parse path/to/file.mm
 ```
 
 ## References

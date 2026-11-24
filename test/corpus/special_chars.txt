@@ -1,0 +1,50 @@
+================================================================================
+Floating hypothesis with dot
+================================================================================
+
+c.pa $f class .|| $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermost_scope_stmt
+    (stmt
+      (hypothesis_stmt
+        (floating_stmt
+          (label)
+          (typecode (constant))
+          (variable (mathsymbol)))))))
+
+================================================================================
+Floating hypothesis with quotes
+================================================================================
+
+bnjcYn $f class Y" $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermost_scope_stmt
+    (stmt
+      (hypothesis_stmt
+        (floating_stmt
+          (label)
+          (typecode (constant))
+          (variable (mathsymbol)))))))
+
+================================================================================
+Floating hypothesis with underscore
+================================================================================
+
+bnjvvm- $f setvar v'_ $.
+
+--------------------------------------------------------------------------------
+
+(database
+  (outermost_scope_stmt
+    (stmt
+      (hypothesis_stmt
+        (floating_stmt
+          (label)
+          (typecode (constant))
+          (variable (mathsymbol)))))))

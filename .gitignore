@@ -1,5 +1,53 @@
-# Dependencies
+# Large generated test files
+test/corpus/*.bin.txt
+
+# Rust artifacts
+target/
+# Cargo.lock
+
+# Node artifacts
+build/
+prebuilds/
 node_modules/
+# package-lock.json
+
+# Go artifacts
+_obj/
+
+# Python artifacts
+.venv/
+dist/
+*.egg-info
+*.whl
+
+# C artifacts
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.pc
+*.exp
+*.lib
+
+# Zig artifacts
+.zig-cache/
+zig-cache/
+zig-out/
+
+# Example dirs
+/examples/*/
+
+# Grammar volatiles
+*.wasm
+*.obj
+*.o
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
+*.jar
 
 # Build artifacts
 build/
@@ -25,15 +73,10 @@ npm-debug.log*
 # Test artifacts
 *.actual
 
-# Package lock files (optional - uncomment if you want to track)
-# package-lock.json
-
-# Cargo lock (for Rust development)
-# Cargo.lock
-
 # Generated documentation
 docs/book/
 
 # Temporary files
 tmp/
 temp/
+reference

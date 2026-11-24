@@ -1,111 +1,60 @@
 /**
  * @file Tree-sitter grammar for Metamath proof language
  * @author POPeeeDev
+ * @author m4dh0rs3
  * @license CC0-1.0
- * 
- * Based on the Metamath specification from "Metamath: A Computer Language 
+ *
+ * Based on the Metamath specification from "Metamath: A Computer Language
  * for Pure Mathematics" by Norman Megill & David A. Wheeler.
- * 
- * @see http://us.metamath.org/downloads/metamath.pdf (Appendix: EBNF)
+ *
+ * @see https://us.metamath.org/downloads/metamath.pdf (Appendix: EBNF)
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-module.exports = grammar({
-  name: 'metamath',
-
-  extras: $ => [
-    /\s/,
-    $.comment,
-  ],
-
+export default grammar({
+  name: "metamath",
+  extras: $ => [/\s/, $.comment],
   rules: {
-    database: $ => repeat($.outermostscopestmt),
+    database: $ => repeat($.outermost_scope_stmt),
+    outermost_scope_stmt: $ =>
+      choice($.include_stmt, $.constant_stmt, $.stmt),
 
-    outermostscopestmt: $ => choice(
-      $.includestmt,
-      $.constantstmt,
-      $.stmt
-    ),
-
-    includestmt: $ => seq("$[", $.filename, "$]"),
-
-    constantstmt: $ => seq("$c", repeat1($.constant), "$."),
-
-    stmt: $ => choice(
-      $.block,
-      $.variablestmt,
-      $.disjointstmt,
-      $.hypothesisstmt,
-      $.assertstmt
-    ),
+    include_stmt: $ => seq("$[", $.filename, "$]"),
+    constant_stmt: $ => seq("$c", repeat1($.constant), "$."),
+    stmt: $ =>
+      choice($.block, $.variable_stmt, $.disjoint_stmt, $.hypothesis_stmt, $.assert_stmt),
 
     block: $ => seq("${", repeat($.stmt), "$}"),
 
-    variablestmt: $ => seq("$v", repeat1($.variable), "$."),
+    variable_stmt: $ => seq("$v", repeat1($.variable), "$."),
+    disjoint_stmt: $ => seq("$d", $.variable, $.variable, repeat($.variable), "$."),
 
-    disjointstmt: $ => seq("$d", $.variable, $.variable, repeat($.variable), "$."),
+    hypothesis_stmt: $ => choice($.floating_stmt, $.essential_stmt),
+    floating_stmt: $ => seq($.label, "$f", $.typecode, $.variable, "$."),
+    essential_stmt: $ => seq($.label, "$e", $.typecode, repeat($.mathsymbol), "$."),
 
-    hypothesisstmt: $ => choice(
-      $.floatingstmt,
-      $.essentialstmt
-    ),
+    assert_stmt: $ => choice($.axiom_stmt, $.provable_stmt),
+    axiom_stmt: $ => seq($.label, "$a", $.typecode, repeat($.mathsymbol), "$."),
+    provable_stmt: $ =>
+      seq($.label, "$p", $.typecode, repeat($.mathsymbol), "$=", $.proof, "$."),
 
-    floatingstmt: $ => seq($.label, "$f", $.typecode, $.variable, "$."),
-
-    essentialstmt: $ => seq($.label, "$e", $.typecode, repeat($.mathsymbol), "$."),
-
-    assertstmt: $ => choice(
-      $.axiomstmt,
-      $.provablestmt
-    ),
-
-    axiomstmt: $ => seq($.label, "$a", $.typecode, repeat($.mathsymbol), "$."),
-
-    provablestmt: $ => seq($.label, "$p", $.typecode, repeat($.mathsymbol), "$=", $.proof, "$."),
-
-    proof: $ => choice(
-      $.uncompressedproof,
-      $.compressedproof
-    ),
-
-    uncompressedproof: $ => repeat1(choice(
-      $.label,
-      "?"
-    )),
-
-    compressedproof: $ => seq("(", repeat($.label), ")", repeat1($.compressedproofblock)),
-
-    typecode: $ => $.constant,
-
-    // A mathsymbol is a single whitespace-delimited token per the spec:
-    // MATH-SYMBOL ::= (_PRINTABLE-CHARACTER - '$')+
-    // We split into label-like tokens, parens, and other printable chars
-    mathsymbol: $ => choice(
-      $.label,
-      "(",
-      ")",
-      $._mathsymbol_chars
-    ),
-
-    // Printable chars that aren't $, parens, or alphanumeric (handled by label)
-    // Range: ! " # % & ' * + , - / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
-    _mathsymbol_chars: _ => /[\x21-\x23\x25-\x27\x2a-\x2d\x2f\x3a-\x40\x5b-\x5e\x60\x7b-\x7e]+/,
+    proof: $ => choice($.uncompressed_proof, $.compressed_proof),
+    uncompressed_proof: $ => repeat1(choice($.label, "?")),
+    compressed_proof: $ =>
+      seq("(", repeat($.label), ")", repeat1($.compressed_proof_block)),
 
     filename: $ => $.mathsymbol,
-    constant: $ => $.mathsymbol,
+    typecode: $ => $.constant,
+    constant: $ => choice("|-", "wff", "setvar", "class", $.mathsymbol),
     variable: $ => $.mathsymbol,
 
-    // ========== TERMINAL TOKENS ==========
-
-    // LABEL ::= (_LETTER-OR-DIGIT | '.' | '-' | '_')+
-    label: _ => /[A-Za-z0-9.\-_]+/,
-
-    // COMPRESSED-PROOF-BLOCK ::= ([A-Z] | '?')+
-    compressedproofblock: _ => /[A-Z?]+/,
-
-    // Comments: $( ... $)
+    // TERMINAL TOKENS
+    mathsymbol: $ => /[\x21-\x23\x25-\x7e]+/,
+    label: _ => /[\w0-9\.\-]+/,
+    compressed_proof_block: _ => /[A-Z\?]+/,
+    // Comments: $( ... $) and do not nest
     comment: _ => /\$\([^$]*(\$[^)][^$]*)*\$\)/,
   },
 });
